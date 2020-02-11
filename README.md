@@ -1,5 +1,6 @@
 # Holiday Oracle Python bindings
 
+[![Build Status](https://travis-ci.com/OffChainData/holiday-oracle-python.svg?branch=master)](https://travis-ci.com/OffChainData/holiday-oracle-python)
 [![License](https://offchaindata.com/images/license.svg)](https://github.com/OffChainData/holiday-oracle-python/blob/master/LICENSE)
 [![pypi](https://img.shields.io/badge/pypi-v0.1.1-orange)](https://pypi.org/project/holiday-oracle/)
 
