@@ -1,0 +1,11 @@
+_work_/
+dist/
+env/
+.vscode
+.venv*
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+*.swp
+*.swo
