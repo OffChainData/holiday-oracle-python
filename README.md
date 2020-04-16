@@ -5,11 +5,11 @@
 [![pypi](https://img.shields.io/badge/pypi-v0.1.1-orange)](https://pypi.org/project/holiday-oracle/)
 
 
-The Holiday Oracle Python library provides convenient access to the global holiday API provided by [Off Chain Data](https://offchaindata.com/docs/index.html) from applications written in the Python language. 
+The Holiday Oracle Python library provides convenient access to the global holiday API provided by [Off Chain Data](https://holidayoracle.io/docs/index.html) from applications written in the Python language. 
 
 ## Requirements
 
-* An API token from [Off Chain Data](https://offchaindata.com)
+* An API token from [Holiday Oracle](https://holidayoracle.io)
 * Python 3.4+
 
 ## Installation 
@@ -27,9 +27,9 @@ Install from source with:
 Calling the API is straight-forward:
 
 ```python
-from offchain.api import OffChainApi
+from offchain.api import HolidayOracleApi
 
-api = OffChainApi( token )
+api = HolidayOracleApi( token )
 resp = api.me()
 print( resp.json )
 ```

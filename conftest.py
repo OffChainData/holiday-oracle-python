@@ -2,7 +2,7 @@
 
 import pytest
 
-from offchain.api import OffChainApi
+from offchain.api import HolidayOracleApi
 
 # ---------------------------------------------------------------------
 
@@ -33,15 +33,15 @@ def options( request ):
 
 @pytest.fixture( scope="function" )
 def api( request ):
-    """Return a test OffChainApi object."""
+    """Return a test HolidayOracleApi object."""
 
     if request.config.getoption( "--live" ):
         fixtures_dir = None
     else:
-        # NOTE: Since we are returning this OffChainApi object as a fixture, we can't set
+        # NOTE: Since we are returning this HolidayOracleApi object as a fixture, we can't set
         # the fixtures directory here; the caller will have to do it themselves (see init_tests()).
         fixtures_dir = "..."
-    return OffChainApi(
+    return HolidayOracleApi(
         request.config.getoption( "--token" ),
         fixtures_dir
     )

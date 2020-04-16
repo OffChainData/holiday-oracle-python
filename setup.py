@@ -17,8 +17,8 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name = "holiday-oracle",
-    version = "0.1.1",
-    description = "Provides access to global holidays via the Off Chain Data API.",
+    version = "0.1.2",
+    description = "Provides access to global holidays via the Holiday Oracle API.",
     author = "Off Chain Data",
     author_email = "hello@offchaindata.com",
     long_description = long_description,

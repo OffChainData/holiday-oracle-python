@@ -40,6 +40,22 @@ def test_date( api ):
 
 # ---------------------------------------------------------------------
 
+def test_business_days( api ):
+    """Test calling the "business-days" endpoint."""
+
+    # initialize
+    init_tests( api, fixtures="basic" )
+
+    # call the "holidays" endpoint and check the response
+    resp = api.business_days( "2020-01-01","2020-02-01", country="AU" )
+    assert resp.code == 200
+    assert isinstance( resp.headers, dict )
+    assert isinstance( resp.raw, bytes )
+    assert resp.json["status"] == "success"
+    assert resp.json["data"]["business_days"] and resp.json["data"]["total_days"]
+
+# ---------------------------------------------------------------------
+
 def test_holidays( api ):
     """Test calling the "holidays" endpoint."""
 

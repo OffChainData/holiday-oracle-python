@@ -1,7 +1,9 @@
-""" Provides access to the OffChain API.
-
-https://offchaindata.com/docs/index.html
 """
+  Copyright (c) Off Chain Data
+ 
+  This source code is licensed under the MIT license found in the
+  LICENSE file in the root directory of this source tree.
+ """
 
 import os
 import json
@@ -9,10 +11,10 @@ import urllib.request
 
 # ---------------------------------------------------------------------
 
-class OffChainApi:
-    """Provides access to the OffChain API."""
+class HolidayOracleApi:
+    """Provides access to the Holiday Oracle API."""
 
-    _API_URL_BASE = "https://offchaindata.com/api/v1"
+    _API_URL_BASE = "https://holidayoracle.io/api/v1"
 
     def __init__( self, token, fixtures_dir=None, event_handler=None ):
         self.token = token or os.environ.get( "OCD_TOKEN" )
@@ -23,34 +25,41 @@ class OffChainApi:
 
     def me( self ):
         """Returns information about the API token.
-            https://offchaindata.com/docs/index.html#auth
+            https://holidayoracle.io/docs/index.html#auth
         """
         return self._call_api( "auth/me", None )
 
     def date( self, country, **kwargs ):
         """Returns information about the specified date.
-            https://offchaindata.com/docs/index.html#date
+            https://holidayoracle.io/docs/index.html#date
         """
         if not kwargs.get("date") and not kwargs.get("timestamp"):
             raise ValueError( "One of 'date' or 'timestamp' must be specified." )
         kwargs["country"] = country
         return self._call_api( "date", kwargs )
 
+    def business_days( self, date1, date2, country, **kwargs ):
+        """Calculates business/working days between two dates.
+            https://holidayoracle.io/docs/index.html#business-days
+        """
+        kwargs.update( { "country": country, "date1": date1, "date2": date2 } )
+        return self._call_api( "date/business-days", kwargs )        
+
     def holidays( self, country, year, **kwargs ):
         """Returns a list of holidays.
-            https://offchaindata.com/docs/index.html#holidays
+            https://holidayoracle.io/docs/index.html#holidays
         """
         kwargs.update( { "country": country, "year": year } )
         return self._call_api( "date/holidays", kwargs )
 
     def locations( self ):
         """Returns a list of supported countries and subdivisions.
-            https://offchaindata.com/docs/index.html#locations
+            https://holidayoracle.io/docs/index.html#locations
         """
         return self._call_api( "date/locations", None )
 
     def _call_api( self, endpoint, args ):
-        """Call the OffChain API.
+        """Call the Holiday Oracle API.
 
         This is the main entry point into the API, all the other public methods just call into here.
         """
@@ -71,7 +80,7 @@ class OffChainApi:
         else:
 
             # nope - prepare a request for the live server
-            url = "{}/{}".format( OffChainApi._API_URL_BASE, endpoint )
+            url = "{}/{}".format( HolidayOracleApi._API_URL_BASE, endpoint )
             headers = { "Authorization": "Bearer {}".format( self.token ) }
             if not args:
                 data = None
